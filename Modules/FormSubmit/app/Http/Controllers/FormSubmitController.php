@@ -4,6 +4,8 @@ namespace Modules\FormSubmit\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\FormSubmit\App\Models\Formdata;
+
 
 class FormSubmitController extends Controller
 {
@@ -27,7 +29,21 @@ class FormSubmitController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request) {
+
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'message'=>'required'
+        ]);
+
+        $formdata = new Formdata();
+        $formdata->name = $request->name;
+        $formdata->email = $request->email;
+        $formdata->message = $request->message;
+        $formdata->save();
+        return redirect()->back()->with('success','Successfully Added');
         
+
     }
 
     /**

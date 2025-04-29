@@ -16,19 +16,29 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Contact Form</h5>
-                        <form>
+                        <form action="{{ route('formsubmit.store') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" id="name">
+                                <input type="text" class="form-control" id="name" name="name">
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                <input type="email" class="form-control" id="email" name="email"
                                     aria-describedby="emailHelp">
+                                @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Message</label>
                                 <input type="textarea" class="form-control" id="message" name="message">
+                                @error('message')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
