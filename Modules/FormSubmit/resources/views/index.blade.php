@@ -31,7 +31,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
+<<<<<<< HEAD
                                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+=======
+                                <input type="text" class="form-control" id="name" name="name">
+>>>>>>> f0e8c63 (first commit)
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -39,15 +43,23 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="email" name="email"
+<<<<<<< HEAD
                                     value="{{ old('email') }}" aria-describedby="emailHelp">
+=======
+                                    aria-describedby="emailHelp">
+>>>>>>> f0e8c63 (first commit)
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Message</label>
+<<<<<<< HEAD
                                 <input type="textarea" class="form-control" id="message" name="message"
                                     value="{{ old('message') }}">
+=======
+                                <input type="textarea" class="form-control" id="message" name="message">
+>>>>>>> f0e8c63 (first commit)
                                 @error('message')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
