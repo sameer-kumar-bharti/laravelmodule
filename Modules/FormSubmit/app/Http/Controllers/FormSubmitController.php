@@ -40,8 +40,11 @@ class FormSubmitController extends Controller
         $formdata->name = $request->name;
         $formdata->email = $request->email;
         $formdata->message = $request->message;
-        $formdata->save();
-        return redirect()->back()->with('success','Successfully Added');
+        if($formdata->save()){
+            return redirect()->back()->with('success','Successfully Added');
+        }else{
+            return redirect()->back()->with('danger','Something wrong !');
+        }
         
 
     }

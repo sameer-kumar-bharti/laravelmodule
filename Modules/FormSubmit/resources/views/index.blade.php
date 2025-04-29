@@ -11,16 +11,27 @@
 
 <body>
     <div class="container">
+    <h5 class="card-title mt-5">Form Submission Module</h5>
         <div class="row mt-5">
             <div class="col-sm-8 mb-3 mb-sm-0">
                 <div class="card">
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                    @endif
+                    @if (session('danger'))
+                    <div class="alert alert-danger">
+                        {{ session('danger') }}
+                    </div>
+                    @endif
                     <div class="card-body">
                         <h5 class="card-title">Contact Form</h5>
                         <form action="{{ route('formsubmit.store') }}" method="post">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -28,14 +39,15 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Email address</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    aria-describedby="emailHelp">
+                                    value="{{ old('email') }}" aria-describedby="emailHelp">
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Message</label>
-                                <input type="textarea" class="form-control" id="message" name="message">
+                                <input type="textarea" class="form-control" id="message" name="message"
+                                    value="{{ old('message') }}">
                                 @error('message')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
