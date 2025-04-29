@@ -14,7 +14,8 @@ class FormSubmitController extends Controller
      */
     public function index()
     {
-        return view('formsubmit::index');
+        $formdata = Formdata::all();
+        return view('formsubmit::index',compact('formdata'));
     }
 
     /**
@@ -35,21 +36,15 @@ class FormSubmitController extends Controller
             'email'=>'required|email',
             'message'=>'required'
         ]);
-
         $formdata = new Formdata();
         $formdata->name = $request->name;
         $formdata->email = $request->email;
         $formdata->message = $request->message;
-<<<<<<< HEAD
         if($formdata->save()){
             return redirect()->back()->with('success','Successfully Added');
         }else{
             return redirect()->back()->with('danger','Something wrong !');
         }
-=======
-        $formdata->save();
-        return redirect()->back()->with('success','Successfully Added');
->>>>>>> f0e8c63 (first commit)
         
 
     }
