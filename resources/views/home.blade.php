@@ -17,19 +17,36 @@
                     <div class="card-body">
                         <h5 class="card-title">Modules</h5>
                         <p class="card-text">Adding modules.</p>
-                        <a href="#" class="btn btn-primary">Add</a>
+                        <a href="{{ route('addmodule') }}" class="btn btn-primary">Add</a>
                     </div>
                 </div>
             </div>
             @foreach($modules as $module)
-            <div class="col-sm-4 mb-3 mb-sm-0">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ basename($module) }}</h5>
-                        <p class="card-text">Simple {{ basename($module) }} module.</p>
-                        <a href="#" class="btn btn-primary">Disable</a>
-                        <a href="#" class="btn btn-info">Export</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ basename($module) }}</h5>
+                                <p class="card-text">Simple {{ basename($module) }} module.</p>
+                                <div class="d-flex gap-2">
+                                    <form action="{{ route('modules.toggle', basename($module)) }}" method="post">
+                                        @csrf
+                                        @if (Module::isEnabled(basename($module)))
+                                        <button type="submit" class="btn btn-secondary">Disable</button>
+                                        @else
+                                        <button type="submit" class="btn btn-success">Enable</button>
+                                        @endif
+                                    </form>
+                                    <a href="{{ route('downloadModule',basename($module)) }}"
+                                        class="btn btn-info">Export</a>
+                                    <form action="{{ route('removeModule', basename($module)) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

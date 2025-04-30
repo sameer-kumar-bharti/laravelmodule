@@ -2,5 +2,7 @@
     "FormSubmit": true,
     "Test": true,
     "Model": true,
-    "Formdata": true
+    "Formdata": true,
+    "Backup": true,
+    "Log": true
 }

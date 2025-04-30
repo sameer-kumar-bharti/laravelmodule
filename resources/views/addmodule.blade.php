@@ -16,10 +16,14 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Add Module</h5>
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('extractModuleZip') }}" method="post" enctype="multipart/form-data">
+                            @csrf    
                             <div class="mb-3">
                                 <label for="filedata" class="form-label">File</label>
-                                <input type="file" class="form-control" id="filedata" name="filedata">
+                                <input type="file" class="form-control" id="zip_file" name="zip_file">
+                                @error('zip_file')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
